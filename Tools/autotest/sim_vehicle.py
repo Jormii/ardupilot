@@ -847,7 +847,10 @@ def start_mavproxy(opts, stuff):
         cmd.append("-w")
         cmd.append("mavproxy.exe")
     else:
-        cmd.append("mavproxy.py")
+        from pathlib import Path
+
+        home = str(Path.home())
+        cmd.append(f"{home}/.local/bin/mavproxy.py")
 
     if opts.mcast:
         cmd.extend(["--master", "mcast:"])
